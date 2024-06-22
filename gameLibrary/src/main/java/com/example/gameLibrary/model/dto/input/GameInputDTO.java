@@ -16,12 +16,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class GameInputDTO {
 
-    //TODO: exception for duplicated name
     @NotNull(message = "The field 'Name' is required!")
     @NotBlank(message = "The field 'Name' cannot be empty!")
+    @NotEmpty(message = "The field 'Name' cannot be empty!")
     private String name;
 
-    //TODO: exception for duplicated image
     @NotNull(message = "The field 'Image Url' is required!")
     @NotBlank(message = "The field 'Image Url' cannot be empty!")
     private String imageUrl;

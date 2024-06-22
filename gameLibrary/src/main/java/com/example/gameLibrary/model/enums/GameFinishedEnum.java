@@ -8,7 +8,7 @@ import lombok.Getter;
 public enum GameFinishedEnum {
 
     NO("No"),
-    Yes("Yes");
+    YES("Yes");
 
     private String description;
 }
