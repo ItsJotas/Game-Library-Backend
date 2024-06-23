@@ -4,6 +4,7 @@ import com.example.gameLibrary.model.Game;
 import com.example.gameLibrary.model.dto.input.GameInputDTO;
 import com.example.gameLibrary.repository.GameRepository;
 import com.example.gameLibrary.service.exception.BadRequestException;
+import com.example.gameLibrary.service.exception.ObjectNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -28,6 +29,13 @@ public class GameService {
         repository.save(game);
     }
 
+    public void deleteGame(Long id) {
+        Game game = repository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Game not found! Id: " + id));
+        if(Objects.nonNull(game)){
+            repository.deleteById(id);
+        }
+    }
+
     private void checkDuplicatedName(String name){
         Game game = repository.findByName(name);
         if(Objects.nonNull(game)){
@@ -41,4 +49,6 @@ public class GameService {
             throw new BadRequestException("There is already a Game with this image!");
         }
     }
+
+
 }
